@@ -10,6 +10,7 @@ namespace Gestion_Championnat
     {
         public Entraineur(string nom) : base(nom)
         {    
+            //commentaire
         }
 
         public Entraineur(string nom, string prenom) : base(nom, prenom)
