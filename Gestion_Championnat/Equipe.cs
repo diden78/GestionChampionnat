@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 
 namespace Gestion_Championnat
 {
-    class Equipe
+    class Equipe 
     {
         public string NomEquipe { get; set; }
         public string Ville { get; set; }
         public string NomStade { get; set; }
         public List<Joueur> Joueurs = new List<Joueur> { };
         public Entraineur entraineur { get; set; }
-
+        public int ButsMarques { get; set; }
+        public int ButsEncaisses { get; set; }
+        public int NombrePoints { get; set; }
+        public int DiffDeButs { get; set; }
+        public int NombreVictoires { get; set; }
+        public int NombreDefaites { get; set; }
+        public int NombreNuls { get; set; }
 
         public Equipe(string nom)
         {
             if (nom == null)
             {
-                throw new ArgumentOutOfRangeException("nom", nom, "Le nom de la ville ne doit pas être nul ou vide");
+                throw new ArgumentOutOfRangeException("nom", nom, "Le nom de l'équipe ne doit pas être nul ou vide");
             }
 
             NomEquipe = nom;
@@ -34,8 +40,7 @@ namespace Gestion_Championnat
             Ville = ville;
         }
 
-        public Equipe(string nom, string ville, string stade)
-            : this(nom, ville)
+        public Equipe(string nom, string ville, string stade): this(nom, ville)
         {
             if (stade == null)
             {
@@ -46,6 +51,16 @@ namespace Gestion_Championnat
         public void addJoueur(Joueur monJoueur)
         {
             Joueurs.Add(monJoueur);
+        }
+
+        public void calculNombrePoints()
+        {
+            NombrePoints = (NombreVictoires * 3) + (NombreNuls);
+        }
+
+        public void calculDiffDeButs()
+        {
+            DiffDeButs = ButsMarques - ButsEncaisses;
         }
 
 
@@ -84,6 +99,8 @@ namespace Gestion_Championnat
         //{
         //    entraineur = new Entraineur(nom, prenom, dateDeNaiss);
         //}
+
+
 
 
     }

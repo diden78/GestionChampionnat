@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gestion_Championnat
+namespace Gestion_Championnat 
 {
-    class Championnat
+    class Championnat : IComparer<Equipe>
     {
         
         public string Saison { get; set; }
@@ -27,7 +27,7 @@ namespace Gestion_Championnat
             {
                 throw new ArgumentOutOfRangeException("division", division, "La division ne doit pas être nulle ou vide");
             }
-            if (nbEqu == null)
+            if (nbEqu == 0)
             {
                 throw new ArgumentOutOfRangeException("nombre d'équipes", nbEqu, "Le nombre d'équipes ne doit pas être nulle ou vide");
             }
@@ -44,6 +44,27 @@ namespace Gestion_Championnat
         public void addJournee(Journee maJournee)
         {
             Calendrier.Add(maJournee);
+        }
+
+        public int Compare(Equipe A, Equipe B)
+        {
+            if (A.NombrePoints.CompareTo(B.NombrePoints) == 0)
+            {
+                if (A.DiffDeButs.CompareTo(B.DiffDeButs) == 0)
+                {
+                    return A.NomEquipe.CompareTo(B.NomEquipe);
+                } return A.DiffDeButs.CompareTo(B.DiffDeButs);
+            } return A.NombrePoints.CompareTo(B.NombrePoints);
+        }
+
+        public void actualiserClassement()
+        {
+            foreach (var monEquipe in Equipes)
+            {
+                monEquipe.calculDiffDeButs();
+                monEquipe.calculNombrePoints();
+            }
+
         }
     }
 }
