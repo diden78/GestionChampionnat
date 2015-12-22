@@ -29,7 +29,7 @@ namespace Gestion_Championnat
             }
             if (nbEqu == 0)
             {
-                throw new ArgumentOutOfRangeException("nombre d'équipes", nbEqu, "Le nombre d'équipes ne doit pas être nulle ou vide");
+                throw new ArgumentOutOfRangeException("nombre d'équipes", nbEqu, "Le nombre d'équipes ne doit pas être nul ou vide");
             }
             Saison = saison;
             Division = division;
